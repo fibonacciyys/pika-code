@@ -6,6 +6,10 @@
   <img src="preview.png?raw=true" alt="Claude Code CLI" width="700">
 </p>
 
+<p align="center">
+  <img src="pikachu-preview.jpg?raw=true" alt="Pika Code - Pikachu Logo" width="700">
+</p>
+
 > [!WARNING]
 > 本仓库为**非官方**版本，基于公开 npm 发布包 source map 还原，**仅供研究学习**。源码版权归 [Anthropic](https://www.anthropic.com) 所有。
 
@@ -298,6 +302,7 @@ vendor/                 # 原生绑定源码
 
 - npm 包：[@anthropic-ai/claude-code](https://www.npmjs.com/package/@anthropic-ai/claude-code)
 - 还原方式：提取 `cli.js.map` 中的 `sourcesContent`
+- Pikachu ASCII Art 来源：[emojicombos.com/pikachu-text-art](https://emojicombos.com/pikachu-text-art)
 
 ## 声明
 
