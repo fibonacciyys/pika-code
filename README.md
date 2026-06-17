@@ -1,9 +1,9 @@
-# Claude Code 源码还原
+# Pika Code
 
 > 从 `@anthropic-ai/claude-code` npm 包的 source map 中还原的完整 TypeScript 源码，**可本地运行**
 
 <p align="center">
-  <img src="preview.png?raw=true" alt="Claude Code CLI" width="700">
+  <img src="preview.png?raw=true" alt="Pika Code CLI" width="700">
 </p>
 
 <p align="center">
@@ -22,6 +22,69 @@ bun install       # 安装依赖（需要 Bun ≥ 1.3.5、Node.js ≥ 24）
 bun run dev       # 启动 CLI
 bun run version   # 验证版本
 ```
+
+---
+
+## 编译安装
+
+将项目编译为独立可执行文件，无需通过 `bun run dev` 启动。
+
+### 编译命令
+
+```bash
+# 当前平台
+bun run build
+
+# 指定平台
+bun run build:linux       # Linux x64 → dist/pika-code-linux
+bun run build:darwin      # macOS Intel → dist/pika-code-macos
+bun run build:darwin_arm  # macOS ARM → dist/pika-code-macos-arm
+bun run build:windows     # Windows x64 → dist/pika-code-windows.exe
+
+# 所有平台（交叉编译）
+bun run build:all
+```
+
+### 输出文件
+
+编译后生成在 `dist/` 目录：
+
+```
+dist/
+├── pika-code              # 当前平台
+├── pika-code-linux        # Linux x64
+├── pika-code-macos        # macOS Intel
+├── pika-code-macos-arm    # macOS ARM
+└── pika-code-windows.exe  # Windows x64
+```
+
+### 安装到系统
+
+```bash
+# 方法 1: 复制到 PATH 目录
+sudo cp dist/pika-code /usr/local/bin/pika
+
+# 方法 2: 创建软链接（推荐）
+mkdir -p ~/.local/bin
+ln -s $(pwd)/dist/pika-code ~/.local/bin/pika
+
+# 确保 ~/.local/bin 在 PATH 中
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+# 测试
+pika --version   # 0.0.1 (Pika Code)
+pika --help      # 显示帮助
+pika             # 启动交互式会话
+```
+
+### 编译脚本说明
+
+编译脚本位于 `scripts/build.ts`，配置项：
+
+- **版本号**: `VERSION = '0.0.1'`
+- **外部依赖**: AWS SDK、Azure、OpenTelemetry exporter 等可选模块不打包
+- **MACRO 定义**: 版本、构建时间、包名等编译时常量
 
 ---
 
